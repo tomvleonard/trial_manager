@@ -1,6 +1,6 @@
 class Organization < ApplicationRecord
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :contact_name, presence: true
   validates :contact_email, presence: true
   validates :contact_phone, presence: true
