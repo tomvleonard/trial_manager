@@ -7,8 +7,21 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    - if notice
-      p.notice= notice
-    - if alert
-      p.alert= alert
-    = yield
+    #wrap
+      .container.content
+        - if content_for?(:title) || content_for?(:title_html)
+          h1
+            = yield(:title)
+            = yield(:title_html)
+
+        - if notice
+          p.notice= notice
+
+        - if alert
+          p.alert= alert
+
+        = yield
+
+        br
+        = link_to('Sign In', new_user_session_path) unless user_signed_in?
+        = link_to('Sign Out', destroy_user_session_path, method: :delete) if user_signed_in?
