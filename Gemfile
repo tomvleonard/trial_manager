@@ -29,11 +29,11 @@ gem 'jbuilder', '~> 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+#
 
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise', '~> 4.1.0'
-
 gem 'mysql2', '~> 0.4.4'
-
 gem 'slim', '~> 3.0.6'
 
 group :development, :test do
