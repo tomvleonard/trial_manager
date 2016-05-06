@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :admin do
     sequence(:first_name) { |n| "Admin#{n}" }
     sequence(:last_name) { |n| "McAdminheimer#{n}" }
@@ -25,5 +24,18 @@ FactoryGirl.define do
     city 'Exeter'
     state 'NH'
     postal_code '09876'
+  end
+
+  factory :user_organization do
+    user
+    organization
+  end
+
+  factory :user_organization_administrator, parent: :user_organization do
+    administrator true
+  end
+
+  factory :user_organization_trial_secretary, parent: :user_organization do
+    trial_secretary true
   end
 end

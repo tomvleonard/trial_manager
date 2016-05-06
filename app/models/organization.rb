@@ -1,5 +1,8 @@
 class Organization < ApplicationRecord
 
+  has_many :user_organizations
+  has_many :users, through: :user_organizations
+
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :contact_name, presence: true
   validates :contact_email, presence: true
