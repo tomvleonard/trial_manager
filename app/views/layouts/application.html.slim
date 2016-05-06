@@ -25,3 +25,11 @@ html
         = yield
 
       #push
+
+    #footer
+      .container
+        div.right
+          - if admin_signed_in?
+            = link_to('Admin Sign Out', destroy_admin_session_path, method: :delete)
+          - else
+            = link_to('Admin Access', new_admin_session_path)
