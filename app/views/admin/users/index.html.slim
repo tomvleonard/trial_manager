@@ -1,0 +1,21 @@
+- title 'Users'
+
+- if @user_presenters.any?
+  table.table.table-striped
+    thead
+      tr
+        th First Name
+        th Last Name
+        th Email
+        th Organizations
+        th Create Date
+    tbody
+      - @user_presenters.each do |up|
+        td= up.first_name
+        td= up.last_name
+        td= up.email
+        td= up.user_organization_presenters.map(&:organization_name_with_membership).join('<br />').html_safe
+        td= up.create_date
+
+- else
+  p No users exist yet.

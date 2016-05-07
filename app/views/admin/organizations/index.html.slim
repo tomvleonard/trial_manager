@@ -1,0 +1,32 @@
+- title 'Organizations'
+
+- if @organization_presenters.any?
+  table.table.table-striped
+    thead
+      tr
+        th Name
+        th Members
+        th Street
+        th City
+        th State
+        th Postal Code
+        th Contact Name
+        th Contact Email
+        th Contact Phone
+        th Create Date
+    tbody
+      - @organization_presenters.each do |op|
+        tr
+          td= op.name
+          td= op.user_organization_presenters.map(&:user_name_with_membership).join('<br />').html_safe
+          td= op.street
+          td= op.city
+          td= op.state
+          td= op.postal_code
+          td= op.contact_name
+          td= op.contact_email
+          td= op.contact_phone
+          td= op.create_date
+
+- else
+  p No organizations exist yet.
