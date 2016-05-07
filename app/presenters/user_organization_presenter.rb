@@ -1,6 +1,6 @@
 class UserOrganizationPresenter < SimpleDelegator
 
-  delegate :user, to: :user_organization
+  delegate :user, :organization, to: :user_organization
 
   def user_organization
     __getobj__
@@ -8,6 +8,10 @@ class UserOrganizationPresenter < SimpleDelegator
 
   def user_name_with_membership
     "#{user.first_name} #{user.last_name} (#{membership})"
+  end
+
+  def organization_name_with_membership
+    "#{organization.name} (#{membership})"
   end
 
   def membership
