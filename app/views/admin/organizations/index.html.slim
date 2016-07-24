@@ -17,8 +17,11 @@
     tbody
       - @organization_presenters.each do |op|
         tr
-          td= op.name
-          td= op.user_organization_presenters.map(&:user_name_with_membership).join('<br />').html_safe
+          td= link_to op.name, admin_organization_path(op.id)
+          td
+            - op.user_organization_presenters.each do |uop|
+              = link_to uop.user_name_with_membership, admin_user_path(uop.user_id)
+              br
           td= op.street
           td= op.city
           td= op.state
