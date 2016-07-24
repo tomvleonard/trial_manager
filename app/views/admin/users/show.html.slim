@@ -1,0 +1,34 @@
+- title @user_presenter.full_name
+
+dl
+  dt Email
+  dd= @user_presenter.email
+  dt Sign In Count
+  dd= @user_presenter.sign_in_count
+  dt Current Sign In At
+  dd= @user_presenter.current_sign_in_at
+  dt Last Sign In At
+  dd= @user_presenter.last_sign_in_at
+  dt Current Sign In IP
+  dd= @user_presenter.current_sign_in_ip
+  dt Last Sign In IP
+  dd= @user_presenter.last_sign_in_ip
+  dt Confirmed?
+  dd= @user_presenter.confirmed?
+  dt Failed Attempts
+  dd= @user_presenter.failed_attempts
+  dt Locked?
+  dd= @user_presenter.locked?
+
+h3 Organizations
+table.table.table-striped
+  thead
+    tr
+      th Name
+      th Membership
+  tbody
+    - @user_presenter.user_organization_presenters.each do |uop|
+      tr
+        td= link_to uop.organization_name, admin_organization_path(uop.organization_id)
+        td= uop.membership
+

@@ -4,17 +4,18 @@
   table.table.table-striped
     thead
       tr
-        th First Name
-        th Last Name
+        th Full Name
         th Email
         th Organizations
         th Create Date
     tbody
       - @user_presenters.each do |up|
-        td= up.first_name
-        td= up.last_name
+        td= link_to up.full_name, admin_user_path(up.id)
         td= up.email
-        td= up.user_organization_presenters.map(&:organization_name_with_membership).join('<br />').html_safe
+        td
+          - up.user_organization_presenters.each do |uop|
+            = link_to uop.organization_name_with_membership, admin_organization_path(uop.organization_id)
+            br
         td= up.create_date
 
 - else
