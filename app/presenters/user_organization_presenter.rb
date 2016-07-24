@@ -10,6 +10,10 @@ class UserOrganizationPresenter < SimpleDelegator
     "#{user.first_name} #{user.last_name} (#{membership})"
   end
 
+  def user_full_name
+    "#{user.first_name} #{user.last_name}"
+  end
+
   def organization_name_with_membership
     "#{organization.name} (#{membership})"
   end
