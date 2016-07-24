@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   namespace :admin do
-    resources :organizations, only: [ :index ]
-    resources :users, only: [ :index ]
+    resources :organizations, only: [ :index, :show ]
+    resources :users, only: [ :index, :show ]
   end
 end
