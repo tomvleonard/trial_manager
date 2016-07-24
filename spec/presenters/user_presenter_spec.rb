@@ -1,9 +1,34 @@
 require 'rails_helper'
 
 describe UserPresenter do
-
   before do
     @user = create :user
+  end
+
+  describe '.full_name' do
+    it 'should return the user first and last names' do
+      expect(UserPresenter.new(@user).full_name).to eq "#{@user.first_name} #{@user.last_name}"
+    end
+  end
+
+  describe '.confirmed?' do
+    it 'should return Yes if there is a confirmed_at date' do
+      @user.confirmed_at = Date.today
+      expect(UserPresenter.new(@user).confirmed?).to eq 'Yes'
+    end
+    it 'should return No if confirmed_at is nil' do
+      expect(UserPresenter.new(@user).confirmed?).to eq 'No'
+    end
+  end
+
+  describe '.locked?' do
+    it 'should return Yes if there is a locked_at date' do
+      @user.locked_at = Date.today
+      expect(UserPresenter.new(@user).locked?).to eq 'Yes'
+    end
+    it 'should return No if locked_at is nil' do
+      expect(UserPresenter.new(@user).locked?).to eq 'No'
+    end
   end
 
   describe '.create_date' do

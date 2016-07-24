@@ -6,8 +6,20 @@ class UserPresenter < SimpleDelegator
     __getobj__
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def confirmed?
+    user.confirmed_at.present? ? 'Yes' : 'No'
+  end
+
+  def locked?
+    locked_at.present? ? 'Yes' : 'No'
+  end
+
   def create_date
-    user.created_at.strftime('%d/%m/%Y')
+    created_at.strftime('%d/%m/%Y')
   end
 
   def user_organization_presenters
