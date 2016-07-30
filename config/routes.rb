@@ -8,4 +8,10 @@ Rails.application.routes.draw do
     resources :organizations, only: [ :index, :show ]
     resources :users, only: [ :index, :show ]
   end
+
+  namespace :org do
+    resources :users
+  end
+  get '/dashboard', to: 'org/users#dashboard'
+
 end
