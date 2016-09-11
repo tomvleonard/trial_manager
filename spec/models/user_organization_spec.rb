@@ -26,4 +26,33 @@ RSpec.describe UserOrganization, type: :model do
     end
   end
 
+  describe 'scopes' do
+    before do
+      @user_organization = create :user_organization
+    end
+
+    describe '.manager' do
+      it 'should return empty collection if no user organizations where administrator or trial_secretary is true' do
+        expect(UserOrganization.manager).to be_empty
+      end
+      it 'should return user organization collection where administrator is true' do
+        @user_organization.update_column(:administrator, true)
+        expect(UserOrganization.manager).to eq [ @user_organization ]
+      end
+      it 'should return user organization collection where trial_secretary is true' do
+        @user_organization.update_column(:trial_secretary, true)
+        expect(UserOrganization.manager).to eq [ @user_organization ]
+      end
+    end
+    describe '.handler' do
+      it 'should return empty collection if no user organizations where handler is true' do
+        expect(UserOrganization.handler).to be_empty
+      end
+      it 'should return user organization collection where handler is true' do
+        @user_organization.update_column(:handler, true)
+        expect(UserOrganization.handler).to eq [ @user_organization ]
+      end
+    end
+  end
+
 end
