@@ -9,6 +9,14 @@
       = link_to 'Trial Manager', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       ul.nav.navbar-nav.pull-right
+        - if current_user.present?
+          li.dropdown
+            a.dropdown-toggle href='#' data-toggle='dropdown'
+              | Menu
+              b.caret
+            ul.dropdown-menu
+              li= link_to 'Dashboard', dashboard_path
+              li= link_to('Organizations', org_organizations_path) if current_user.organization_manager?
         - if current_admin.present?
           li.dropdown
             a.dropdown-toggle href='#' data-toggle='dropdown'
