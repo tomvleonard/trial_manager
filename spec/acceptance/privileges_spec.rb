@@ -12,7 +12,6 @@ describe 'Privileges' do
     end
 
     it 'should have access admin/organizations link in Admin dropdown menu' do
-      debugger
       expect(page).to have_xpath("//a[@href='#{admin_organizations_path}']")
     end
     it 'should have access admin/users link in Admin dropdown menu' do
