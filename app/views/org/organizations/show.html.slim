@@ -1,0 +1,31 @@
+- title_html @organization_presenter.name + small_edit_button(edit_org_organization_path(@organization))
+
+dl
+  dt Street
+  dd= @organization_presenter.street
+  dt City
+  dd= @organization_presenter.city
+  dt State
+  dd= @organization_presenter.state
+  dt Postal Code
+  dd= @organization_presenter.postal_code
+  dt Contact Name
+  dd= @organization_presenter.contact_name
+  dt Contact Email
+  dd= @organization_presenter.contact_email
+  dt Contact Phone
+  dd= @organization_presenter.contact_phone
+  dt Create Date
+  dd= @organization_presenter.create_date
+
+h3 Members
+table.table.table-striped
+  thead
+    tr
+      th Full Name
+      th Membership
+  tbody
+    - @organization_presenter.user_organization_presenters.each do |uop|
+      tr
+        td= link_to uop.user_full_name, admin_user_path(uop.user_id)
+        td= uop.membership

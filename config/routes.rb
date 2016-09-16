@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :org do
     resources :users
+    resources :organizations
   end
   get '/dashboard', to: 'org/users#dashboard'
 
